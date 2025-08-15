@@ -7,11 +7,16 @@ import os
 app = Flask(__name__)
 
 NIKO_GITHUB_WEBHOOK_SECRET = os.getenv("NIKO_GITHUB_WEBHOOK_SECRET", "")
-MANUAL_SECRET = os.getenv("MANUAL_SECRET", "")
+NIKO_MANUAL_SECRET = os.getenv("NIKO_MANUAL_SECRET", "")
+
+
+@app.route("/")
+def index():
+    return "harmony"
 
 
 @app.route("/niko-deploy", methods=["POST"])
-def deploy():
+def niko_deploy():
     # Check if this is GitHub webhook
     sig = request.headers.get("X-Hub-Signature-256")
     if sig:
