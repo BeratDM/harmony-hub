@@ -32,7 +32,7 @@ def niko_deploy():
     else:
         # Manual trigger check
         token = request.headers.get("X-Manual-Token")
-        if token != MANUAL_SECRET:
+        if token != NIKO_MANUAL_SECRET:
             abort(403, description="Invalid signature or token")
 
     print("deploying niko-discord-bot")
